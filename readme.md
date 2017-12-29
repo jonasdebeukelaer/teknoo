@@ -1,1 +1,1 @@
-goal: create techno using keras lstm
+goal: create techno using keras lstm!
