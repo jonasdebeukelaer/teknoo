@@ -29,7 +29,8 @@ def defineModel():
 	features = 1
 
 	model = Sequential()
-	model.add(LSTM(4, batch_input_shape=(batch_size, timesteps, features)))
+	model.add(LSTM(4, batch_input_shape=(batch_size, timesteps, features), stateful=True, return_sequences=True))
+	model.add(LSTM(4, batch_input_shape=(batch_size, timesteps, features), stateful=True))
 	model.add(Dense(1))
 
 	model.compile(loss='mean_squared_error', optimizer='adam')
@@ -38,7 +39,7 @@ def defineModel():
 
 model = defineModel()
 
-for i in range(50):
+for i in range(100):
 	model.fit(trainX, trainY, epochs=1, batch_size=1, verbose=2, shuffle=False)
 	model.reset_states()
 
