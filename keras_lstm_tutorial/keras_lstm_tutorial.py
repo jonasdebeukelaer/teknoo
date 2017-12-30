@@ -15,7 +15,7 @@ from sklearn.metrics import mean_squared_error
 
 from preprocessingMethods import preprocessDataset
 
-df = pd.read_csv('../data/international_airline_passengers.csv', usecols=[1], engine='python', skipfooter=3)
+df = pd.read_csv('data/international_airline_passengers.csv', usecols=[1], engine='python', skipfooter=3)
 dataset = df.values.astype('float32')
 
 scaler = MinMaxScaler(feature_range=(0,1))

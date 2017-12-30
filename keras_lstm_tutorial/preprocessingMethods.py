@@ -8,7 +8,7 @@ def date_parser(date_string):
 
 def getAndFeatureEngineer():
 	print('load data and feature engineer...')
-	df = pd.read_csv('../data/international_airline_passengers.csv', parse_dates=[0], date_parser=date_parser, engine='python', skipfooter=3)
+	df = pd.read_csv('data/international_airline_passengers.csv', parse_dates=[0], date_parser=date_parser, engine='python', skipfooter=3)
 	df['month_number'] = df['Month'].dt.month
 	df = df.drop(['Month'], axis=1)
 	dataset = df.values.astype('float32')
