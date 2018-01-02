@@ -1,0 +1,1 @@
+great explanation [here](https://ayearofai.com/rohan-lenny-3-recurrent-neural-networks-10300100899b)

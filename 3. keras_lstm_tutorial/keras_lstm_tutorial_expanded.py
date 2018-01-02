@@ -13,7 +13,7 @@ from sklearn.metrics import mean_squared_error
 
 from preprocessingMethods import preprocessDataset, getAndFeatureEngineer
 
-look_back=3
+look_back=1
 batch_size = 1
 
 
@@ -36,7 +36,7 @@ def defineModel():
 model = defineModel()
 
 print('fit model...')
-for i in range(150):
+for i in range(1000):
 	model.fit(trainX, trainY, epochs=1, batch_size=1, verbose=2, shuffle=False)
 	model.reset_states()
 
