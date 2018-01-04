@@ -9,18 +9,33 @@ def date_parser(date_string):
 def getAndFeatureEngineer():
 	print('load data and feature engineer...')
 	df = pd.read_csv('data/international_airline_passengers.csv', parse_dates=[0], date_parser=date_parser, engine='python', skipfooter=3)
+	#df = pd.read_csv('data/international_airline_passengers.csv', engine='python', skipfooter=3)
 	df['month_number'] = df['Month'].dt.month
 	df = df.drop(['Month'], axis=1)
 	dataset = df.values.astype('float32')
 
 	scaler = MinMaxScaler(feature_range=(0,1))
-	look_back = 3
 
 	return dataset, scaler
 
 
 def rescaleDataset(dataset, scaler):
-	dataset = scaler.fit_transform(dataset)
+
+	print(dataset[0:10])
+
+	passengers = dataset[:, 0]
+	month = dataset[:, 1]
+	passengers = scaler.fit_transform(passengers)
+
+	monthScaler = MinMaxScaler(feature_range=(0,1))
+	month = monthScaler.fit_transform(month)
+
+
+	dataset = np.array([passengers, month]).transpose()
+
+	print("converted")
+	print(dataset[0:10])
+
 	return dataset
 
 def splitDataset(dataset, look_back):
@@ -34,8 +49,9 @@ def create_dataset(dataset, look_back=1):
 	dataX, dataY = [], []
 	for i in range(len(dataset) - look_back - 1):
 		a = dataset[i:(i+look_back), 0]
-		b = dataset[i:(i+look_back), 1]
-		dataX.append([a, b])
+		#b = dataset[i:(i+look_back), 1]
+		#dataX.append([a, b])
+		dataX.append([a])
 		dataY.append(dataset[i + look_back, 0])
 	return np.array(dataX), np.array(dataY)
 
