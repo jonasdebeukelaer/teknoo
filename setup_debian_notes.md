@@ -60,7 +60,6 @@ location ~ /terminals/ {
 start nginx
 ```
 nginx
-nginx -s reload
 ```
 
 start jupyter notebook
